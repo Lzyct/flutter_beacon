@@ -75,7 +75,7 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     if ([@"initialize" isEqualToString:call.method]) {
         [self initializeLocationManager];
-        [self initializeCentralManager];
+//        [self initializeCentralManager];
         result(@(YES));
         return;
     }
@@ -133,34 +133,34 @@
     
     if ([@"bluetoothState" isEqualToString:call.method]) {
         self.flutterBluetoothResult = result;
-        [self initializeCentralManager];
+//        [self initializeCentralManager];
         
         // Delay 2 seconds
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (self.flutterBluetoothResult) {
-                switch(self.bluetoothManager.state) {
-                    case CBManagerStateUnknown:
-                        self.flutterBluetoothResult(@"STATE_UNKNOWN");
-                        break;
-                    case CBManagerStateResetting:
-                        self.flutterBluetoothResult(@"STATE_RESETTING");
-                        break;
-                    case CBManagerStateUnsupported:
-                        self.flutterBluetoothResult(@"STATE_UNSUPPORTED");
-                        break;
-                    case CBManagerStateUnauthorized:
-                        self.flutterBluetoothResult(@"STATE_UNAUTHORIZED");
-                        break;
-                    case CBManagerStatePoweredOff:
-                        self.flutterBluetoothResult(@"STATE_OFF");
-                        break;
-                    case CBManagerStatePoweredOn:
-                        self.flutterBluetoothResult(@"STATE_ON");
-                        break;
-                }
-                self.flutterBluetoothResult = nil;
-            }
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if (self.flutterBluetoothResult) {
+//                switch(self.bluetoothManager.state) {
+//                    case CBManagerStateUnknown:
+//                        self.flutterBluetoothResult(@"STATE_UNKNOWN");
+//                        break;
+//                    case CBManagerStateResetting:
+//                        self.flutterBluetoothResult(@"STATE_RESETTING");
+//                        break;
+//                    case CBManagerStateUnsupported:
+//                        self.flutterBluetoothResult(@"STATE_UNSUPPORTED");
+//                        break;
+//                    case CBManagerStateUnauthorized:
+//                        self.flutterBluetoothResult(@"STATE_UNAUTHORIZED");
+//                        break;
+//                    case CBManagerStatePoweredOff:
+//                        self.flutterBluetoothResult(@"STATE_OFF");
+//                        break;
+//                    case CBManagerStatePoweredOn:
+//                        self.flutterBluetoothResult(@"STATE_ON");
+//                        break;
+//                }
+//                self.flutterBluetoothResult = nil;
+//            }
+//        });
         return;
     }
     
@@ -276,12 +276,12 @@
     result(FlutterMethodNotImplemented);
 }
 
-- (void) initializeCentralManager {
-    if (!self.bluetoothManager) {
-        // initialize central manager if it itsn't
-        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-    }
-}
+//- (void) initializeCentralManager {
+//    if (!self.bluetoothManager) {
+//        // initialize central manager if it itsn't
+//        self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+//    }
+//}
 
 - (void) initializeLocationManager {
     if (!self.locationManager) {
@@ -378,7 +378,7 @@
     self.flutterResult = result;
     
     [self initializeLocationManager];
-    [self initializeCentralManager];
+//    [self initializeCentralManager];
 }
 
 ///------------------------------------------------------------
